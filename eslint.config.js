@@ -1,24 +1,32 @@
-const { FlatCompat } = require('@eslint/eslintrc');
-const js = require('@eslint/js');
+const { FlatCompat } = require("@eslint/eslintrc");
+const js = require("@eslint/js");
 
 // Initialize with the necessary configurations
 const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
-  eslintrc: true
+  eslintrc: true,
 });
 
 module.exports = [
   js.configs.recommended,
   ...compat.config({
-    env: { 
-      es2021: true, 
-      node: true, 
-      jest: true 
+    env: {
+      es2021: true,
+      node: true,
+      jest: true,
     },
     rules: {
-      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
       "no-console": "off",
-      "eqeqeq": ["error", "always"]
-    }
-  })
+      eqeqeq: ["error", "always"],
+    },
+    overrides: [
+      {
+        files: ["tests/k6/**/*.js"],
+        globals: {
+          __ENV: "readonly",
+        },
+      },
+    ],
+  }),
 ];
