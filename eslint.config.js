@@ -22,9 +22,13 @@ module.exports = [
     },
     overrides: [
       {
-        files: ["tests/k6/**/*.js"],
+        files: ["loadtest/**/*.js"],
         globals: {
           __ENV: "readonly",
+          open: "readonly",
+          sleep: "readonly",
+          check: "readonly",
+          group: "readonly",
         },
       },
     ],
