@@ -63,7 +63,6 @@ jobs:
   k6-smoke-test:
     name: k6 Smoke Test
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.run_k6 == 'true' }}
 
     steps:
       - name: Checkout Repository
